@@ -1,0 +1,51 @@
+<tr>
+  <td class="px-6 py-4 whitespace-no-wrap">
+    <div class="flex items-center">
+      <div class="ml-4 truncate max-w-xs">
+        {{@interview.id}}
+      </div>
+    </div>
+  </td>
+
+  <td class="px-6 py-4 whitespace-no-wrap">
+    <div class="flex items-center">
+      <div class="ml-4 max-w-xs" title={{@candidate.name}}>
+        {{@interview.candidate.name}}
+      </div>
+    </div>
+  </td>
+
+  <td class="px-6 py-4 whitespace-no-wrap">
+    <span
+      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 capitalize"
+    >
+      {{@interview.post.title}}
+      {{@interview.post.level}}
+    </span>
+  </td>
+
+  <td class="px-6 py-4 whitespace-no-wrap">
+    <div class="flex items-center">
+      <div class="ml-4 truncate max-w-xs">
+        {{#if @interview.result}}
+          <span class="text-green-600">Прошел</span>
+        {{else if (eq @interview.result false)}}
+          <span class="text-red-600">Не прошел</span>
+        {{else}}
+          <span class="text-blue-600">в процессе</span>
+        {{/if}}
+      </div>
+    </div>
+  </td>
+
+  <td class="px-6 py-4 whitespace-no-wrap">
+    <div class="flex items-center">
+      <div class="ml-4 truncate max-w-xs">
+        {{date-format @interview.date "DD.MM.YYYY"}}
+      </div>
+    </div>
+  </td>
+
+
+
+</tr>

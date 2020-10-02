@@ -1,0 +1,8 @@
+<div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+                <LinkTo  @route="candidates" class={{if (eq this.router.currentURL "/candidates") this.activeClass this.notActiveClass}}>Кандидаты</LinkTo>
+                <LinkTo  @route="questions" class={{if (eq this.router.currentURL "/questions") this.activeClass this.notActiveClass}}>Вопросы</LinkTo>
+                <LinkTo  @route="interviews" class={{if (eq this.router.currentURL "/interviews") this.activeClass this.notActiveClass}}>Интервью</LinkTo>
+</div>
+          </div> 
+

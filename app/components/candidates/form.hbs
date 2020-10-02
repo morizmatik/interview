@@ -1,0 +1,72 @@
+
+<Main::Form @model={{@candidate}} @title={{@title}} @description={{@description}}>
+      <div
+        class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+      >
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Имя
+        </dt>
+
+          <Input
+          required={{true}}
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+          value={{@candidate.name}}
+          {{on "change" this.updateName}}
+        />
+          
+
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Желаемая должность
+        </dt>
+          <PowerSelect @selected={{@candidate.post}} @options={{@posts}} @onChange={{this.setPost}} as |post|>
+            <span class="capitalize">{{post.title}} {{post.level}}</span>
+          </PowerSelect>
+      </div>
+      <div class="rounded border p-4 overflow-hidden">
+<div class="font-bold text-xl mb-2">{{if @candidate.interviews.length "Пройденные собеседования" "Нет пройденных собеседований"}}</div>
+        {{#each @candidate.interviews as |interview|}}
+        <div class="py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">  
+        <span class="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-200 mr-2 mb-2">
+          {{date-format interview.date "DD.MM.YYYY"}}
+        </span>
+            <span
+      class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 capitalize"
+    >
+      {{interview.post.title}}
+      {{interview.post.level}}
+    </span>
+                <span
+      class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 capitalize"
+    >
+
+        {{#if interview.result}}
+          <span class="text-green-600">Прошел</span>
+        {{else if (eq interview.result false)}}
+          <span class="text-red-600">Не прошел</span>
+        {{else}}
+          <span class="text-blue-600">в процессе</span>
+        {{/if}}
+    
+ 
+    </span>
+          {{#each interview.answers as |answer|}}
+            <div class="mb-2">
+              <LinkTo @route="questions.change" @model={{answer.question.id}} class="font-bold">
+                  Вопрос {{answer.question.id}}: {{answer.question.text}}
+              </LinkTo>
+              <div class="w-full break-words whitespace-normal">
+                  Ответ: {{answer.text}}
+              </div>
+            </div>
+          {{/each}}
+          </div>
+        {{/each}}    
+      </div>
+      
+     
+      
+
+   
+</Main::Form>

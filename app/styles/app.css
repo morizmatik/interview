@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.pagination {
+  width: 100%;
+  display: flex;
+  font-size: 1.2em;
+}
+
+.pagination li {
+  padding: 1em;
+}
+
+.pagination li.active {
+  font-weight: bold;
+}

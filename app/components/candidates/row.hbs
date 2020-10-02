@@ -1,0 +1,47 @@
+<tr>
+  <td class="px-6 py-4 whitespace-no-wrap">
+    <div class="flex items-center">
+      <div class="ml-4 truncate max-w-xs">
+        {{@candidate.id}}
+      </div>
+    </div>
+  </td>
+  <td class="px-6 py-4 whitespace-no-wrap">
+    <div class="flex items-center">
+      <div class="ml-4 max-w-xs" title={{@candidate.name}}>
+        {{@candidate.name}}
+      </div>
+    </div>
+  </td>
+  <td class="px-6 py-4 whitespace-no-wrap">
+    <span
+      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 capitalize"
+    >
+    
+      {{@candidate.post.title}}
+      {{@candidate.post.level}}
+    </span>
+  </td>
+
+  <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">  
+    {{#each @candidate.interviews as |interview|}}
+        <div>
+
+            {{date-format interview.date "DD.MM.YYYY"}}
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-green-800 capitalize">
+            {{interview.post.title}}
+            {{interview.post.level}}
+          </span>
+        </div>
+    {{/each}}
+  </td>
+  <td
+    class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+  >
+    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+      <LinkTo @route="candidates.change" @model={{@candidate.id}}>
+        Изменить
+      </LinkTo>
+    </a>
+  </td>
+</tr>

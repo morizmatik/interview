@@ -1,0 +1,50 @@
+
+<Main::Form @model={{@question}} @title={{@title}} @description={{@description}}>
+      <div
+        class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+      >
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Сложность
+        </dt>
+
+          <PowerSelect @required={{true}} @selected={{this.model.complexity}} @options={{this.levels}} @onChange={{this.setComplexity}} as |level|>
+            {{level}}
+          </PowerSelect>
+
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Должность
+        </dt>
+
+          <PowerSelect @selected={{@question.post}} @options={{@posts}} @onChange={{this.setPost}} as |post|>
+            <span class="capitalize">{{post.title}} {{post.level}}</span>
+          </PowerSelect>
+
+      </div>
+      <div
+        class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+      >
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Вопрос
+        </dt>
+        <Input
+        required={{true}}
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+          value={{@question.text}}
+          {{on "change" this.updateText}}
+        />
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm leading-5 font-medium text-gray-500">
+          Ответ
+        </dt>
+        <Textarea
+        required={{true}}
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+          value={{this.model.answer}}
+          {{on "change" this.updateAnswer}}
+        />
+      </div>
+   
+</Main::Form>
